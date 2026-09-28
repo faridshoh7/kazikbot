@@ -1,0 +1,29 @@
+# Секреты
+.env
+.env.local
+*.session
+*.session-journal
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Базы данных
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+backups/
+
+# Логи и временное
+*.log
+*.bak
+.DS_Store
+.idea/
+.vscode/
