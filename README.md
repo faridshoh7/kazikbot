@@ -81,3 +81,15 @@ keyboards.py       клавиатуры
 
 `.env` с токеном, боевая база `gram.db`, папка `backups/` и `__pycache__/` —
 всё это в `.gitignore` и живёт только на сервере.
+
+## Запуск как сервис
+
+В репозитории лежит `kazikbot.service`. Установка:
+
+```bash
+sudo cp kazikbot.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now kazikbot
+```
+
+Логи: `journalctl -u kazikbot -f`
