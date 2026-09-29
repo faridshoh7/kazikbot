@@ -2,8 +2,10 @@ import time
 
 from aiogram import Router, types, F
 from aiogram.filters import Command
+from aiogram.fsm.context import FSMContext
 
 from keyboards import BTN_BONUS
+from handlers.captcha import ask_captcha
 from database import get_last_bonus, set_last_bonus, update_balance, get_balance
 from utils import fmt
 from settings import CURRENCY
@@ -29,8 +31,9 @@ def time_left(seconds: float) -> str:
 
 @router.message(F.text == BTN_BONUS)
 @router.message(Command("bonus", ignore_case=True))
-async def cmd_bonus(message: types.Message):
-    await give_bonus(message)
+async def cmd_bonus(message: types.Message, state: FSMContext):
+    # Бонус выдаём только после капчи — иначе его собирают скриптами
+    await ask_captcha(message, state)
 
 
 async def give_bonus(message: types.Message):

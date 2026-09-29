@@ -32,6 +32,7 @@ from handlers.money import router as money_router
 from handlers.history import router as history_router
 from handlers.admin import router as admin_router
 from handlers.change_text import router as change_router
+from handlers.captcha import router as captcha_router
 from handlers.roulette import router as roulette_router
 from handlers.mines import router as mines_router
 from handlers.joker import router as joker_router
@@ -150,6 +151,8 @@ async def main():
     # Админка первой, чтобы её команды не перехватили другие роутеры
     dp.include_router(admin_router)
     dp.include_router(change_router)
+    # Капча раньше остальных: пока её ждём, код не должен попасть в другой роутер
+    dp.include_router(captcha_router)
     dp.include_router(start_router)
     dp.include_router(profile_router)
     dp.include_router(hogwarts_router)
