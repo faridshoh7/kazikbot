@@ -16,6 +16,21 @@ BTN_BONUS = "🎁Бонус"
 BTN_POLICY = "Политика"
 BTN_LANG = "Изменить язык"
 
+# Нажатие на меню не должно приниматься за ответ боту (например, за код капчи)
+MENU_BUTTONS = frozenset({
+    BTN_PROFILE,
+    BTN_HOGWARTS,
+    BTN_COMMANDS,
+    BTN_DONATE,
+    BTN_TOURNAMENTS,
+    BTN_CHATS,
+    BTN_CLANS,
+    BTN_GAMES,
+    BTN_BONUS,
+    BTN_POLICY,
+    BTN_LANG,
+})
+
 
 def main_menu() -> ReplyKeyboardMarkup:
     builder = ReplyKeyboardBuilder()
