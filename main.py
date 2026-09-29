@@ -12,7 +12,7 @@ from aiogram import Bot, Dispatcher, BaseMiddleware
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 from aiogram.fsm.storage.memory import MemoryStorage
-from aiogram.types import Message, CallbackQuery, ErrorEvent
+from aiogram.types import Message, CallbackQuery, ErrorEvent, BotCommand
 from aiogram.exceptions import TelegramBadRequest
 
 from config import BOT_TOKEN, ADMIN_ID, START_BANK
@@ -132,6 +132,15 @@ async def main():
 
     bot = Bot(token=BOT_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
     dp = Dispatcher(storage=MemoryStorage())
+
+    # Список команд в кнопке "Меню" у пользователя. Сами команды ничего
+    # не обрабатывают — это только подсказка, что можно написать.
+    await bot.set_my_commands([
+        BotCommand(command="start", description="главное меню"),
+        BotCommand(command="commands", description="список команд"),
+        BotCommand(command="help", description="допомога"),
+        BotCommand(command="rules", description="правила"),
+    ])
 
     # Первый запуск — наполняем банк, иначе выигрыши платить не из чего
     if get_setting("bank") is None:
